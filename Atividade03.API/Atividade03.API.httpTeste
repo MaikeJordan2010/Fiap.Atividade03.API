@@ -1,6 +1,6 @@
 @Atividade03.API_HostAddress = http://localhost:5075
 
-GET {{Atividade03.API_HostAddress}}/weatherforecast/
+GET {{Atividade03.API_HostAddress}}/ObterLista/
 Accept: application/json
 
 ###

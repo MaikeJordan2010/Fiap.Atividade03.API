@@ -11,8 +11,7 @@ namespace API.Dominio.DTOs
     [Table("TabContatos")]
     public class Contato
     {
-        [Key]
-        public string Guid { get; set; }
+        public string? Guid { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
         public string? DDD { get; set; }

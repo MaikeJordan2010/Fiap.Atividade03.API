@@ -1,6 +1,7 @@
 ﻿using API.Aplicacao._Contato.Comandos;
 using API.Aplicacao._Contato.Consultas;
 using API.Dominio.DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atividade03.API.Controllers
@@ -83,12 +84,32 @@ namespace Atividade03.API.Controllers
             }
         }
 
-        [HttpGet("ObterLista/{ddd}")]
+        [HttpGet("ObterListaPorDDD/{ddd}")]
         public async Task<IActionResult> ObterListaPorDDD(string ddd)
         {
             try
             {
                 var resultado = await Task.Run(() => _consultas.ObterListaPorDDD(ddd));
+
+                if (resultado != null)
+                {
+                    return Ok(resultado);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        [HttpGet("ObterContato/{guid}")]
+        public async Task<IActionResult> ObterContato(string guid)
+        {
+            try
+            {
+                var resultado = await Task.Run(() => _consultas.ObterPorGuid(guid));
 
                 if (resultado != null)
                 {

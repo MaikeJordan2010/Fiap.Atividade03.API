@@ -27,7 +27,7 @@ namespace API.Repositorio.Repositorios.ContatosRepositorio.Consultas
 
                     var query = new StringBuilder();
                     query.Append("SELECT * FROM TabContatos ");
-                    query.Append("WHERE Email = ?email ");
+                    query.Append("WHERE Email = @email ");
 
                    var resultado =  _connection.Query<Contato>(query.ToString(), new { email = email }).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace API.Repositorio.Repositorios.ContatosRepositorio.Consultas
 
                     var query = new StringBuilder();
                     query.Append("SELECT * FROM TabContatos ");
-                    query.Append("WHERE Guid = ?guid ");
+                    query.Append("WHERE Guid = @guid ");
 
                     var resultado = _connection.Query<Contato>(query.ToString(), new { guid = guid }).FirstOrDefault();
 
@@ -85,9 +85,8 @@ namespace API.Repositorio.Repositorios.ContatosRepositorio.Consultas
 
                     var query = new StringBuilder();
                     query.Append("SELECT * FROM TabContatos ");
-                    query.Append("WHERE Guid = ?guid ");
 
-                    var resultado = _connection.GetAll<Contato>();
+                    var resultado = _connection.Query<Contato>(query.ToString());
 
                     return resultado ?? Enumerable.Empty<Contato>();
                 }
@@ -114,7 +113,7 @@ namespace API.Repositorio.Repositorios.ContatosRepositorio.Consultas
 
                     var query = new StringBuilder();
                     query.Append("SELECT * FROM TabContatos ");
-                    query.Append("WHERE DDD = ?ddd ");
+                    query.Append("WHERE DDD = @ddd ");
 
                     var resultado = _connection.Query<Contato>(query.ToString(), new { ddd = ddd });
 
