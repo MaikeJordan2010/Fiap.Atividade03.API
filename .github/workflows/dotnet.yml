@@ -1,4 +1,4 @@
-# This workflow will build a .NET project
+pi# This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .Net
@@ -39,6 +39,6 @@ jobs:
       uses: docker/build-push-action@v6.13.0
       with:
         context: .
-        tags: 'maikejordan2010/fiap.atividade03.atualizar:v1'
+        tags: 'maikejordan2010/fiap.atividade03.api:v1'
         push: true
           
