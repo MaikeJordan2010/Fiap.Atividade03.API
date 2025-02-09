@@ -9,6 +9,56 @@ services:
     networks: 
       - teste
 
+
+  servico.atualizar:
+    image: maikejordan2010/fiap.atividade03.atualizar:v1
+    environment: 
+      - ConnectionStrings:${CONNECTION_STRING}
+      - RabbitLocal:Endereco=${ENDERECO}
+      - RabbitLocal:Porta=${PORTA}
+      - RabbitLocal:Usuario=${USUARIO}
+      - RabbitLocal:Senha=${SENHA}
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks: 
+      - teste
+    depends_on:
+      - rabbitmq
+
+  servico.excluir:
+    image: maikejordan2010/fiap.atividade03.excluir:v1
+    environment: 
+      - ConnectionStrings:${CONNECTION_STRING}
+      - RabbitLocal:Endereco=${ENDERECO}
+      - RabbitLocal:Porta=${PORTA}
+      - RabbitLocal:Usuario=${USUARIO}
+      - RabbitLocal:Senha=${SENHA}
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks: 
+      - teste
+    depends_on:
+      - rabbitmq
+
+  servico.cadastrar:
+    image: maikejordan2010/fiap.atividade03.cadastrar:v1
+    environment: 
+      - ConnectionStrings:${CONNECTION_STRING}
+      - RabbitLocal:Endereco=${ENDERECO}
+      - RabbitLocal:Porta=${PORTA}
+      - RabbitLocal:Usuario=${USUARIO}
+      - RabbitLocal:Senha=${SENHA}
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks: 
+      - teste
+    depends_on:
+      - rabbitmq
+
+
   atividade03.api:
     image: atividade03.api
     extra_hosts:
@@ -28,6 +78,9 @@ services:
       - teste
     depends_on:
       - rabbitmq
+      - servico.atualizar
+      - servico.cadastrar
+      - servico.excluir
 
 networks:
   teste:
