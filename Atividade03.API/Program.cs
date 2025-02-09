@@ -1,7 +1,8 @@
 using API.Aplicacao._Contato.Comandos;
 using API.Aplicacao._Contato.Consultas;
 using API.Aplicacao._Services;
-using API.CrossCutting;
+using API.Aplicacao.Injecao;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +13,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var config = builder.Configuration;
+string[] urls = config.GetSection("Cors").GetValue<string>("Urls").Split(";");
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.AllowAnyOrigin()
+        builder
+                .WithOrigins(urls)
+                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader();
     });

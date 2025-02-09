@@ -1,4 +1,5 @@
 ﻿using API.Dominio.DTOs;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.Text;
@@ -8,16 +9,15 @@ namespace API.Aplicacao._Services
     public class MessageBroker : IMessageBroker
     {
         private readonly ConnectionFactory? _factory;
-        public MessageBroker()
+        public MessageBroker(IConfiguration config)
         {
             _factory = new ConnectionFactory()
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest",
-                
+                HostName = config.GetSection("RabbitLocal").GetSection("Endereco").Value ?? "localhost",
+                UserName = config.GetSection("RabbitLocal").GetSection("Usuario").Value ?? "guest",
+                Password = config.GetSection("RabbitLocal").GetSection("Senha").Value ?? "guest",
+                Port = Convert.ToInt32(config.GetSection("RabbitLocal").GetSection("Porta").Value)
             };
-
         }
 
         public async Task CadastrarContato(Contato contato)

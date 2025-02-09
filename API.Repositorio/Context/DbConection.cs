@@ -17,11 +17,11 @@ namespace API.Repositorio.Context
 
         public SqlConnection? ObterConexao()
         {
+            var stringConexao = _config.GetConnectionString("DefaultConnection");
             try
             {
                 if (_sqlConnection == null) {
 
-                    var stringConexao = _config.GetConnectionString("DefaultConnection");
 
                     _sqlConnection = new SqlConnection(stringConexao);
                     return _sqlConnection;
@@ -31,8 +31,7 @@ namespace API.Repositorio.Context
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                return default;
+                throw new Exception($"SEGUE STRING DE CONEXÃO:{stringConexao}");
             }
         }
       

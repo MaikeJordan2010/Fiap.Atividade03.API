@@ -7,6 +7,7 @@
     <UserSecretsId>f950f0dd-7d22-4097-8826-7fd68dc13877</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API.Aplicacao\API.Aplicacao.csproj" />
-    <ProjectReference Include="..\API.CrossCutting\API.CrossCutting.csproj" />
     <ProjectReference Include="..\API.Dominio\API.Dominio.csproj" />
   </ItemGroup>
 

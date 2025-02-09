@@ -2,7 +2,7 @@
 using API.Repositorio.Repositorios.ContatosRepositorio.Consultas;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace API.CrossCutting
+namespace API.Aplicacao.Injecao
 {
     public static class InjecaoDeDependencias
     {
